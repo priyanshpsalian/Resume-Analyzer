@@ -93,8 +93,8 @@ def insert_data(name,email,res_score,timestamp,no_of_pages,reco_field,cand_level
     connection.commit()
 
 st.set_page_config(
-   page_title="Smart Resume Analyzer",
-   page_icon='./Logo/SRA_Logo.ico',
+   page_title="SmartHire | Find your dream candidate",
+   page_icon='./Logo/s6951lA.png',
 )
 
 import streamlit.components.v1 as components
@@ -140,7 +140,7 @@ def run():
             <a class="nav-link mt-1 px-1 text-dark" href="#">Candidates<span class="sr-only">(current)</span></a>
         </li>
         <li class="nav-item active">
-            <a class="nav-link mt-1 px-1 text-dark" href="https://smarthire-1-8bbc57.ingress-earth.ewp.live/user-dashboard/">Continue to dashboard<span class="sr-only">(current)</span></a>
+            <a class="nav-link mt-1 px-1 text-dark" href="https://smarthire-2-8bbc57.ingress-erytho.ewp.live/user-dashboard">Continue to dashboard<span class="sr-only">(current)</span></a>
         </li>
         </li>
         </ul>
@@ -184,10 +184,6 @@ def run():
                     """
     cursor.execute(table_sql)
     if choice == 'Normal User':
-        # st.markdown('''<h4 style='text-align: left; color: #d73b5c;'>* Upload your resume, and get smart recommendation based on it."</h4>''',
-        #             unsafe_allow_html=True)
-        
-        
         pdf_file = st.file_uploader("Choose your Resume", type=["pdf"])
         # pdf_file = Person('data-scientist-1559725114.pdf',21,'application/pdf',249680)
         # pdf_file=p1.name
@@ -210,8 +206,10 @@ def run():
             with open(save_image_path, "wb") as f:
                 f.write(pdf_file.getbuffer())
             show_pdf(save_image_path)
+            print(save_image_path,"path")
             resume_data = ResumeParser(save_image_path).get_extracted_data()
             if resume_data:
+                # print(resume_data)
                 ## Get the whole resume data
                 resume_text = pdf_reader(save_image_path)
 
